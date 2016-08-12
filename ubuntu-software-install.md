@@ -55,3 +55,71 @@ whoami@whoami-ThinkCentre-E73:/opt/gitlab/ambari$ git branch
 
 ```
 
+# ubuntu 16.4 for ambari
+	https://cwiki.apache.org/confluence/display/AMBARI/Ambari+Development
+
+- python 2.7
+
+```
+sudo sh setuptools-0.6c11-py2.7.egg
+```
+
+- install dependency
+```
+sudo apt-get install rpm yum
+sudo apt-get install nodejs	# nodejs -v
+sudo apt install nodejs-legacy	# node -v
+sudo apt-get install npm	#  npm -v
+```
+
+# build ambari
+	- https://cwiki.apache.org/confluence/display/AMBARI/Coding+Guidelines+for+Ambari
+	
+```
+$ cd ambari/ambari-web/
+$ sudo npm install -g brunch@1.7.20
+$ npm install
+$ brunch build
+
+$ brunch watch --server (or use the shorthand: brunch w -s)
+
+$ cd ambary
+$ mvn -X -B -e clean install package rpm:rpm -DskipTests -Dpython.ver="python >= 2.6"
+
+$ mvn -B clean install package rpm:rpm -DskipTests -Dpython.ver="python >= 2.6" -Preplaceurl	#for centos
+
+$ mvn -B clean install package jdeb:jdeb -DskipTests -Dpython.ver="python >= 2.6" -Preplaceurl	#for ubuntu
+```
+
+
+# ubuntu for docker
+```
+ sudo apt-get install docker.io
+ 
+ /etc/init.d/docker start
+
+sudo systemctl stop docker.service
+sudo systemctl start docker.service
+
+sudo systemctl status docker.service
+
+sudo docker images
+
+```
+
+
+spark-submit   --class streaming.core.StreamingApp \
+--master yarn-cluster \
+--name sql-interactive \
+/tmp/streamingpro-0.3.4-SNAPSHOT-online-1.6.1.jar    \
+-streaming.name sql-interactive    \
+-streaming.platform spark   \
+-streaming.rest true   \
+-streaming.driver.port 9004   \
+-streaming.spark.service true	\
+-streaming.zk.servers bigdata-hdp-server-3:2181,bigdata-hdp-server-1:2181,bigdata-hdp-server-2:2181 \
+-streaming.zk.conf_root_dir  /streamingpro/sparkstreaming 
+
++ '/zeppelin-' + zeppelin + '*.pid'
+
+pid_file=glob.glob('/var/run/zeppelin-notebook' + '/zeppelin-'+ 'zeppelin'+ '*.pid')[0]
