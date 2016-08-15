@@ -64,12 +64,13 @@ whoami@whoami-ThinkCentre-E73:/opt/gitlab/ambari$ git branch
 sudo sh setuptools-0.6c11-py2.7.egg
 ```
 
-- install dependency
+- install dependency node && npm
 ```
-sudo apt-get install rpm yum
-sudo apt-get install nodejs	# nodejs -v
-sudo apt install nodejs-legacy	# node -v
-sudo apt-get install npm	#  npm -v
+https://nodejs.org/dist/v0.10.44/	# version v0.10.44, 0.12.x won't work. 
+
+whoami@whoami-ThinkCentre-E73:/opt/cloud/node/bin$ cat ~/.bashrc |grep NODE
+export NODE_HOME=/opt/cloud/node
+export PATH=.:$NODE_HOME/bin:$MVN_HOME/bin:$IDEA_HOME/bin:$PY_HOME/bin:$JAVA_HOME/bin:$PATH
 ```
 
 # build ambari
@@ -77,16 +78,24 @@ sudo apt-get install npm	#  npm -v
 	
 ```
 $ cd ambari/ambari-web/
-$ sudo npm install -g brunch@1.7.20
+$ sudo su - root
+$ npm install -g brunch@1.7.20
+
+$ exit
+
+
+$ cd ambari/ambari-web
+$ rm -rf node_modules public
 $ npm install
+$ ulimit -n 10000
 $ brunch build
 
 $ brunch watch --server (or use the shorthand: brunch w -s)
 
-$ cd ambary
-$ mvn -X -B -e clean install package rpm:rpm -DskipTests -Dpython.ver="python >= 2.6"
+-- For example
+whoami@whoami-ThinkCentre-E73:/opt/gitlab/ambari/ambari-web$ brunch w -s
+15 Aug 11:17:58 - info: application started on http://localhost:3333/
 
-$ mvn -B clean install package rpm:rpm -DskipTests -Dpython.ver="python >= 2.6" -Preplaceurl	#for centos
 
 $ mvn -B clean install package jdeb:jdeb -DskipTests -Dpython.ver="python >= 2.6" -Preplaceurl	#for ubuntu
 ```
