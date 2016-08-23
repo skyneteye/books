@@ -186,6 +186,21 @@ $ sudo apt install python-pip
 
 $ sudo apt install docker-compose
 
+$ sudo pip install --upgrade pip
+
+root@whoami-ThinkCentre-E73:~# docker-compose version
+docker-compose version 1.8.0, build 94f7016
+docker-py version: 1.9.0
+CPython version: 2.7.12
+OpenSSL version: OpenSSL 1.0.2g-fips  1 Mar 2016
+
+whoami@whoami-ThinkCentre-E73:~$ docker-compose version
+docker-compose version 1.8.0, build 94f7016
+docker-py version: 1.9.0
+CPython version: 2.7.12
+OpenSSL version: OpenSSL 1.0.2g-fips  1 Mar 2016
+
++ install registory auto
 whoami@whoami-ThinkCentre-E73:/opt/gitlab/Portus$ ./compose-setup.sh -e onlyeric.reg
 
 ###########
@@ -263,7 +278,6 @@ Login Succeeded
 
 ```
 $ pip install msgpack-rpc-python
-
 
 
 ```
