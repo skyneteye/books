@@ -351,6 +351,32 @@ $ pip install msgpack-rpc-python
 
 ```
 
+# docker on nexus
+ https://hub.docker.com/r/sonatype/nexus/
+```
+
+docker pull sonatype/nexus
+
+docker run -d -p 8081:8081 --name nexus sonatype/nexus:latest
+
+docker ps -l
+
+To test:
+	curl http://localhost:8081/service/local/status
+
+docker logs -f nexus
+
+Note:
+	Default credentials are: admin / admin123
+
+
+Volume mapping to local host machine:
+
+mkdir /data/nexus-data && chown -R 200 /data/nexus-data
+
+docker run -d -p 8081:8081 --name nexus -v /data/nexus-data:/sonatype-work sonatype/nexus
+
+```
 
 # Ambari HDPDocuments
   - http://docs.hortonworks.com/HDPDocuments/Ambari/Ambari-2.2.2.0/index.html
