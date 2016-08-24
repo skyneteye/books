@@ -260,7 +260,7 @@ Error response from daemon: Get https://hub.itweet.cn:5000/v1/users/: http: serv
 	+ change DOCKER_OPTS add content
 
 	root@whoami-ThinkCentre-E73:/opt/gitlab/Portus# cat /etc/default/docker |grep 5000
-	DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --insecure-registry hub.itweet.cn:5000"
+	DOCKER_OPTS="--insecure-registry hub.itweet.cn:5000"
 
 
 # docker login -u admin -p admin123 hub.itweet.cn:5000
