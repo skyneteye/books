@@ -272,6 +272,73 @@ Login Succeeded
 # docker push onlyeric.reg:5000/admin/busybox:latest
 ```
 
+# harbor for docker registory
+
+```
+
+# vi /etc/hosts
+192.168.0.144	harbor.itweet.cn	skynet.reg
+
+
+#  sudo vi /etc/default/docker
+   DOCKER_OPTS="--insecure-registry harbor.skynet.com"
+
+# sudo service docker restart
+
+# pwd
+/opt/gitlab/harbor/Deploy
+
+# vi harbor.cfg
+  hostname = harbor.skynet.com
+
+# ./prepare 
+Generated configuration file: ./config/ui/env
+Generated configuration file: ./config/ui/app.conf
+Generated configuration file: ./config/registry/config.yml
+Generated configuration file: ./config/db/env
+Generated configuration file: ./config/jobservice/env
+Clearing the configuration file: ./config/ui/private_key.pem
+Clearing the configuration file: ./config/registry/root.crt
+Generated configuration file: ./config/ui/private_key.pem
+Generated configuration file: ./config/registry/root.crt
+The configuration files are ready, please use docker-compose to start the service.
+
+
+# docker-compose up -d
+
+# docker-compose stop 
+# docker-compose start 
+# docker-compose restart 
+# docker-compose rm 	# rm stoping all container
+
+# docker ps -a|wc -l
+7
+
+If everything worked properly, you should be able to open a browser to visit the admin portal at http://harbor.itweet.cn. Note that the default administrator username/password are admin/Harbor12345	.
+
+Log in to the admin portal and create a new project, e.g. myproject. You can then use docker commands to login and push images (by default, the registry server listens on port 80):
+
+# docker login harbor.skynet.reg
+
+
+* For example
+
+# docker login harbor.itweet.cn
+Username: test
+Password: 
+Login Succeeded
+
+# docker pull ubuntu:14.04 
+
+# docker tag  ubuntu:14.04 harbor.itweet.cn/test/ubuntu:14.04  
+
+# docker push harbor.itweet.cn/test/ubuntu:14.04  
+
+* login web check
+  http://harbor.itweet.cn   admin/Harbor12345
+
+```
+
 # SkynetEye
 
 * agent && server by env
