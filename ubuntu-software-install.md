@@ -201,7 +201,7 @@ CPython version: 2.7.12
 OpenSSL version: OpenSSL 1.0.2g-fips  1 Mar 2016
 
 + install registory auto
-whoami@whoami-ThinkCentre-E73:/opt/gitlab/Portus$ ./compose-setup.sh -e onlyeric.reg
+whoami@whoami-ThinkCentre-E73:/opt/gitlab/Portus$ ./compose-setup.sh -e hub.itweet.cn
 
 ###########
 # WARNING #
@@ -223,53 +223,53 @@ Portus: configuring database... [SUCCESS]
 #     SUCCESS     #
 ###################
 
-Make sure port 3000 and 5000 are open on host onlyeric.reg
+Make sure port 3000 and 5000 are open on host hub.itweet.cn
 
-Open http://onlyeric.reg:3000 with your browser and perform the following steps:
+Open http://hub.itweet.cn:3000 with your browser and perform the following steps:
 
   1. Create an admin account
   2. You will be redirected to a page where you have to register the registry. In this form:
     - Choose a custom name for the registry.
-    - Enter onlyeric.reg:5000 as the hostname.
+    - Enter hub.itweet.cn:5000 as the hostname.
     - Do *not* check the "Use SSL" checkbox, since this setup is not using SSL.
 
 Perform the following actions on the docker hosts that need to interact with your registry:
 
-  - Ensure the docker daemon is started with the '--insecure-registry onlyeric.reg:5000'
+  - Ensure the docker daemon is started with the '--insecure-registry hub.itweet.cn:5000'
   - Perform the docker login.
 
 To authenticate against your registry using the docker cli do:
 
-  $ docker login -u <portus username> -p <password> -e <email> onlyeric.reg:5000
+  $ docker login -u <portus username> -p <password> -e <email> hub.itweet.cn:5000
 
 To push an image to the private registry:
 
   $ docker pull busybox
-  $ docker tag busybox onlyeric.reg:5000/<username>busybox
-  $ docker push onlyeric.reg:5000/<username>busybox
+  $ docker tag busybox hub.itweet.cn:5000/<username>busybox
+  $ docker push hub.itweet.cn:5000/<username>busybox
 
 WebUI: http://portus.onlyeric.com:3000/users/sign_up # create admin account...,start Portus registry trip.
-registryAddr: onlyeric.reg:5000
+registryAddr: hub.itweet.cn:5000
 
 
 * login webui,config base info success...
 
-root@whoami-ThinkCentre-E73:/opt/gitlab/Portus# docker login -u admin -p admin123 onlyeric.reg:5000
-Error response from daemon: Get https://onlyeric.reg:5000/v1/users/: http: server gave HTTP response to HTTPS client
+root@whoami-ThinkCentre-E73:/opt/gitlab/Portus# docker login -u admin -p admin123 hub.itweet.cn:5000
+Error response from daemon: Get https://hub.itweet.cn:5000/v1/users/: http: server gave HTTP response to HTTPS client
 
 	+ change DOCKER_OPTS add content
 
 	root@whoami-ThinkCentre-E73:/opt/gitlab/Portus# cat /etc/default/docker |grep 5000
-	DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --insecure-registry onlyeric.reg:5000"
+	DOCKER_OPTS="--dns 8.8.8.8 --dns 8.8.4.4 --insecure-registry hub.itweet.cn:5000"
 
 
-# docker login -u admin -p admin123 onlyeric.reg:5000
+# docker login -u admin -p admin123 hub.itweet.cn:5000
 Login Succeeded
 
 
 # docker pull busybox
-# docker tag busybox onlyeric.reg:5000/admin/busybox:latest
-# docker push onlyeric.reg:5000/admin/busybox:latest
+# docker tag busybox hub.itweet.cn:5000/admin/busybox:latest
+# docker push hub.itweet.cn:5000/admin/busybox:latest
 ```
 
 # harbor for docker registory
@@ -333,6 +333,8 @@ Login Succeeded
 # docker tag  ubuntu:14.04 harbor.itweet.cn/test/ubuntu:14.04  
 
 # docker push harbor.itweet.cn/test/ubuntu:14.04  
+
+# docker pull harbor.skynet.com/test/ubuntu:14.04
 
 * login web check
   http://harbor.itweet.cn   admin/Harbor12345
