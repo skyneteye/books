@@ -398,3 +398,7 @@ spark-submit   --class streaming.core.StreamingApp \
 + '/zeppelin-' + zeppelin + '*.pid'
 
 pid_file=glob.glob('/var/run/zeppelin-notebook' + '/zeppelin-'+ 'zeppelin'+ '*.pid')[0]
+
+# rrdtools for ubuntu
+  - http://martybugs.net/linux/rrdtool/
+  - apt-get install librrds-perl rrdtool
