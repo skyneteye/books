@@ -402,3 +402,28 @@ pid_file=glob.glob('/var/run/zeppelin-notebook' + '/zeppelin-'+ 'zeppelin'+ '*.p
 # rrdtools for ubuntu
   - http://martybugs.net/linux/rrdtool/
   - apt-get install librrds-perl rrdtool
+
+# pipy国内镜像 for ubuntu
+```
+  http://pypi.douban.com/  豆瓣
+
+  http://pypi.hustunique.com/  华中理工大学
+
+  http://pypi.sdutlinux.org/  山东理工大学  
+
+  http://pypi.mirrors.ustc.edu.cn/  中国科学技术大学
+
+  pip install virtualenv -i http://pypi.douban.com/simple
+  pip install --upgrade pip --trusted-host pypi.douban.com
+  pip install --upgrade pip --trusted-host mirrors.aliyun.com
+
+  pip install --upgrade pip setuptools
+
+  sudo add-apt-repository ppa:webupd8team/sublime-text-3
+  sudo apt-get install sublime-text-installer
+
+  sudo apt-get install python-dev
+  sudo apt-get install python-pip
+  sudo apt-get install librrds-perl rrdtool
+```
+
